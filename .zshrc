@@ -134,3 +134,6 @@ alias grbt='git rebase test'
 
 alias rdbm='rails db:migrate'
 alias rc='rails c'
+
+# Source extra configs and aliases from private repository
+[ -f ".zshrc_private" ] && source ".zshrc_private"
