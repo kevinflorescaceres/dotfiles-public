@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,20 +120,42 @@ export NVM_DIR="$HOME/.nvm"
 alias gs='git status'
 alias gss='git status --short'
 alias gc='git commit'
+alias gcm='git commit -m'
+alias gcane='git commit --amend --no-edit'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gpf!='git push --force'
 alias gu='git pull'
 alias gl='git log'
 alias glo='git log --oneline'
 alias glp='git log --all --graph --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n"'
 alias gi='git init'
 alias gcl='git clone'
+alias gst='git stash --include-untracked'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsta='git stash apply'
+alias gcp='git cherry-pick'
 
+alias gcod='git checkout development'
 alias gcor='git checkout release'
 alias gcot='git checkout test'
+alias grbd='git rebase development'
 alias grbr='git rebase release'
 alias grbt='git rebase test'
 
-alias rdbm='rails db:migrate'
 alias rc='rails c'
+alias rdbm='rails db:migrate'
+alias rdbr='rails db:rollback'
+alias rs='rails s'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias home='cd ~'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias update='sudo apt update && sudo apt upgrade'
 
 # Source extra configs and aliases from private repository
 [ -f ".zshrc_private" ] && source ".zshrc_private"
