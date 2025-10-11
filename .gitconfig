@@ -1,0 +1,25 @@
+[color "decorate"]
+	HEAD = red
+	branch = blue
+	tag = yellow
+	remoteBranch = magenta
+[core]
+	editor = nano
+[credential]
+	helper = cache
+[init]
+	defaultBranch = main
+[log]
+	abbrevCommit = true
+[pull]
+	default = current
+	rebase = true
+[push]
+	autoSetupRemote = true
+	default = current
+	followTags = true
+[rebase]
+	autoStash = true
+[status]
+	branch = true
+	showStash = true
