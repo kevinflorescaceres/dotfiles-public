@@ -1,3 +1,5 @@
+[color]
+	ui = true
 [color "decorate"]
 	HEAD = red
 	branch = blue
@@ -23,3 +25,8 @@
 [status]
 	branch = true
 	showStash = true
+[include]
+    path = /home/kevinflores/.dotfiles_private/.gitconfig_private
+[user]
+  name = Kevin Flores Cáceres
+  email = kevin.flores.c@gmail.com
