@@ -1,0 +1,45 @@
+add_newline = false
+
+format = "$directory$git_branch$git_status$ruby$status$character"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "blue bold"
+
+[git_branch]
+symbol = " "
+style = "purple bold"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+disabled = true
+style = "red bold"
+
+[status]
+disabled = false
+format = "[× ]($style)"
+style = "red"
+map_symbol = false
+
+[nodejs]
+symbol = " "
+format = "via [$symbol($version )]($style) "
+style = "green"
+disabled = true
+
+[ruby]
+symbol = "💎 "
+version_format = "${raw}"
+format = "[$symbol$version]($style) "
+style = "red"
+detect_extensions = ["rb"]
+detect_files = ["Gemfile", ".ruby-version"]
+detect_folders = []
+
+[character]
+success_symbol = "[›](bold white)"
+error_symbol = "[›](bold red)"
+
+[aws]
+disabled = true

@@ -1,0 +1,20 @@
+## UI / usability
+set linenumbers
+set mouse
+set softwrap
+set minibar
+
+## Editing behavior
+set tabsize 2
+set tabstospaces
+set autoindent
+
+## Better feedback
+set indicator
+set positionlog
+set historylog
+
+## Colors (simple but useful)
+set titlecolor yellow,black
+set selectedcolor white,blue
+set scrollercolor green
