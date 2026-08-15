@@ -47,7 +47,7 @@
     "cSpell.language": "en,es-ES",
     "editor.minimap.enabled": false,
     "[ruby]": {
-        "editor.defaultFormatter": "misogi.ruby-rubocop"
+        "editor.defaultFormatter": "lorankloeze.ruby-rubocop-revived"
     },
     "[yaml]": {
         "editor.insertSpaces": true,
@@ -61,7 +61,6 @@
         }
     },
     "gitlens.views.repositories.files.layout": "list",
-    "ruby.rubocop.executePath": "/home/kevinflores/.rbenv/versions/2.4.5/bin/",
     "gitlens.views.repositories.showStashes": true,
     "docker.extension.enableComposeLanguageServer": false,
     "chat.instructionsFilesLocations": {

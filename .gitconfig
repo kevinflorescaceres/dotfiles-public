@@ -29,7 +29,7 @@
   name = Kevin Flores Cáceres
   email = kevin.flores.c@gmail.com
 [include]
-  path = /home/kevinflores/.dotfiles_private/.gitconfig_private
+  path = ~/.dotfiles_private/.gitconfig_private
 [alias]
 	wta = "!f() { git worktree add -b \"$1\" \"../$1\"; }; f"
 	wtr = "!f() { git worktree remove \"../$1\"; }; f"
