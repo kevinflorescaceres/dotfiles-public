@@ -2,7 +2,7 @@
   "model": "opus[1m]",
   "statusLine": {
     "type": "command",
-    "command": "bash \"$HOME/.claude/plugins/cache/ponytail/ponytail/4.7.0/hooks/ponytail-statusline.sh\""
+    "command": "bash \"$(ls -d \"$HOME\"/.claude/plugins/cache/ponytail/ponytail/*/hooks/ponytail-statusline.sh 2>/dev/null | sort -V | tail -1)\""
   },
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true,
@@ -15,5 +15,9 @@
         "repo": "DietrichGebert/ponytail"
       }
     }
-  }
+  },
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark",
+  "awaySummaryEnabled": false
 }

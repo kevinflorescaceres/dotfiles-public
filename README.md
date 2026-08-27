@@ -38,3 +38,8 @@ to `<name>.backup`; existing symlinks are replaced. Safe to re-run.
   break on every upgrade. Use JetBrains Settings Sync instead.
 - **Secrets** — `~/.aws`, `~/.gnupg`, `~/.ssh`, `~/.docker/config.json`, `~/.bundle/config`,
   and anything under `~/.config/niufoods/`.
+- **Machine-specific Claude Code settings** — put them in `~/.claude/settings.local.json`.
+  It overrides the synced `~/.claude/settings.json`, and since bootstrap only links tracked
+  files, leaving it untracked is all it takes to keep it local.
+- **Claude Code local state** — `~/.claude.json` (project history, MCP config) and
+  `~/.claude/.credentials.json` (auth token) must never be tracked.
