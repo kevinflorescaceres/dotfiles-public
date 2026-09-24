@@ -14,7 +14,6 @@
 [log]
 	abbrevCommit = true
 [pull]
-	default = current
 	rebase = true
 [push]
 	autoSetupRemote = true
@@ -28,5 +27,5 @@
 [user]
   name = Kevin Flores Cáceres
   email = kevin.flores.c@gmail.com
-[include]
+[includeIf "gitdir:~/Code/"]
   path = ~/.gitconfig_private

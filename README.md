@@ -11,7 +11,7 @@ sensitive lives in the private dotfiles repo.
 | Path | What |
 |---|---|
 | `.zshrc` | z shell config |
-| `.gitconfig` | git config and aliases |
+| `.gitconfig` | git config (work identity only under `~/Code/`) |
 | `.nanorc` | nano editor |
 | `.selected_editor` | default `$EDITOR` |
 | `.claude/settings.json` | Claude Code model, plugins, statusline |
@@ -38,8 +38,10 @@ to `<name>.backup`; existing symlinks are replaced. Safe to re-run.
   break on every upgrade. Use JetBrains Settings Sync instead.
 - **Secrets** — `~/.aws`, `~/.gnupg`, `~/.ssh`, `~/.docker/config.json`, `~/.bundle/config`,
   and anything under `~/.config/niufoods/`.
-- **Machine-specific Claude Code settings** — put them in `~/.claude/settings.local.json`.
-  It overrides the synced `~/.claude/settings.json`, and since bootstrap only links tracked
-  files, leaving it untracked is all it takes to keep it local.
+- **Machine-specific Claude Code settings** — there is no user-level local override:
+  `settings.local.json` only works per project. Keep `.claude/settings.json` generic, and
+  run `git diff` before committing, since Claude Code writes into it (`/model`, auto mode
+  setup). Work-only `autoMode` config goes in managed settings
+  (`/etc/claude-code/managed-settings.json`), sourced from the private repo.
 - **Claude Code local state** — `~/.claude.json` (project history, MCP config) and
   `~/.claude/.credentials.json` (auth token) must never be tracked.
