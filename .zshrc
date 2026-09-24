@@ -81,6 +81,10 @@ alias grbd='git rebase development'
 alias grbr='git rebase release'
 alias grbt='git rebase test'
 
+gwt() { git worktree add -b "$1" "../$1" "${@:2}"; }
+gwtr() { git worktree remove "../$1" "${@:2}"; }
+alias gwtl='git worktree list'
+
 alias rc='rails c'
 alias rdbm='rails db:migrate'
 alias rdbr='rails db:rollback'
