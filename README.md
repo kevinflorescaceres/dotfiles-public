@@ -14,6 +14,8 @@ sensitive lives in the private dotfiles repo.
 | `.gitconfig` | git config (work identity only under `~/Code/`) |
 | `.nanorc` | nano editor |
 | `.selected_editor` | default `$EDITOR` |
+| `.claude/CLAUDE.md` | Global Claude Code instructions (personal rules). Imports `~/.claude/CLAUDE.niufoods.md` from the private repo when present |
+| `.claude/agents/rails-locator.md` | Claude Code subagent: read-only "where does X live" locator for Rails repos. Project specifics come from CLAUDE.md |
 | `.claude/settings.example.json` | Claude Code model, plugins, statusline, `autoMode` template (not linked; the real file lives in the private repo) |
 | `.config/starship.toml` | shell prompt |
 | `.config/git/ignore` | global gitignore |
