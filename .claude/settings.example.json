@@ -21,8 +21,21 @@
       "effortLevel": "medium"
     }
   },
+  "awaySummaryEnabled": false,
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "theme": "dark",
-  "awaySummaryEnabled": false
+  "autoMode": {
+    "environment": [
+      "$defaults",
+      "**Organization**: {COMPANY}. Primary use: {PRIMARY_USE}",
+      "**Source control**: {e.g. bitbucket.org/your-workspace and every repo under it}",
+      "**Cloud provider(s)**: {e.g. AWS: Elastic Beanstalk, S3 + CloudFront}",
+      "**Secrets management**: {e.g. Rails encrypted credentials, .env files}"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "{e.g. Writes/DROP against any non-local database}"
+    ]
+  }
 }

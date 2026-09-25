@@ -14,7 +14,7 @@ sensitive lives in the private dotfiles repo.
 | `.gitconfig` | git config (work identity only under `~/Code/`) |
 | `.nanorc` | nano editor |
 | `.selected_editor` | default `$EDITOR` |
-| `.claude/settings.json` | Claude Code model, plugins, statusline |
+| `.claude/settings.example.json` | Claude Code model, plugins, statusline, `autoMode` template (not linked; the real file lives in the private repo) |
 | `.config/starship.toml` | shell prompt |
 | `.config/git/ignore` | global gitignore |
 | `.config/Code/User/settings.json` | VS Code settings |
@@ -38,10 +38,10 @@ to `<name>.backup`; existing symlinks are replaced. Safe to re-run.
   break on every upgrade. Use JetBrains Settings Sync instead.
 - **Secrets** — `~/.aws`, `~/.gnupg`, `~/.ssh`, `~/.docker/config.json`, `~/.bundle/config`,
   and anything under `~/.config/niufoods/`.
-- **Machine-specific Claude Code settings** — there is no user-level local override:
-  `settings.local.json` only works per project. Keep `.claude/settings.json` generic, and
-  run `git diff` before committing, since Claude Code writes into it (`/model`, auto mode
-  setup). Work-only `autoMode` config goes in managed settings
-  (`/etc/claude-code/managed-settings.json`), sourced from the private repo.
+- **Claude Code `settings.json`** — it holds work-only `autoMode` config and Claude Code
+  writes into it (`/model`, `/permissions`, auto mode setup), so it lives in the private
+  repo. Settings have no include mechanism, so a public/private split would leak on the
+  next write. `.claude/settings.example.json` is a sanitized copy for reference; when you
+  change the real file, update the example without the `autoMode` details.
 - **Claude Code local state** — `~/.claude.json` (project history, MCP config) and
   `~/.claude/.credentials.json` (auth token) must never be tracked.

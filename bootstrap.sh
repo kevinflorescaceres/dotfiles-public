@@ -12,7 +12,7 @@ cd "$DOTFILES"
 
 # The repo mirrors $HOME, so the tracked path IS the destination path.
 # git ls-files keeps this list self-maintaining: track a file, it gets linked.
-git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' | while IFS= read -r f; do
+git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' -e '.claude/settings.example.json' | while IFS= read -r f; do
     target="$HOME/$f"
 
     if [ -n "$DRY_RUN" ]; then
