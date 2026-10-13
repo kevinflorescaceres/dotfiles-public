@@ -27,5 +27,7 @@
 [user]
   name = Kevin Flores Cáceres
   email = kevin.flores.c@gmail.com
-[includeIf "gitdir:~/Code/"]
+[includeIf "hasconfig:remote.*.url:git@bitbucket.org:niusushi/**"]
+  path = ~/.gitconfig_private
+[includeIf "hasconfig:remote.*.url:https://*@bitbucket.org/niusushi/**"]
   path = ~/.gitconfig_private

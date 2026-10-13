@@ -11,7 +11,7 @@ sensitive lives in the private dotfiles repo.
 | Path | What |
 |---|---|
 | `.zshrc` | z shell config |
-| `.gitconfig` | git config (work identity only under `~/Code/`) |
+| `.gitconfig` | git config (work identity only for repos with a `bitbucket.org/niusushi` remote) |
 | `.nanorc` | nano editor |
 | `.selected_editor` | default `$EDITOR` |
 | `.claude/CLAUDE.md` | Global Claude Code instructions (personal rules). Imports `~/.claude/CLAUDE.niufoods.md` from the private repo when present |
