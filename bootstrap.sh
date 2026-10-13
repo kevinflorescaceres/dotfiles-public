@@ -23,6 +23,7 @@ git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' -e '.claude/settings.
     if [ -L "$target" ]; then
         rm "$target"
     elif [ -e "$target" ]; then
+        diff -u "$DOTFILES/$f" "$target" || true
         mv "$target" "$target.backup"
         echo "backed up ~/$f -> ~/$f.backup"
     fi
