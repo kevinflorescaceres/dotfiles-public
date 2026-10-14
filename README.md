@@ -19,7 +19,9 @@ sensitive lives in the private dotfiles repo.
 | `.claude/agents/cross-repo-consumer.md` | Claude Code subagent: read-only "who consumes X" finder across sibling repos. Repo map comes from CLAUDE.md |
 | `.claude/agents/error-triage.md` | Claude Code subagent: read-only Rails log triage, root cause + file:line. Extra log locations come from CLAUDE.md |
 | `.claude/skills/obsidian-notes/SKILL.md` | Claude Code skill: write vault notes in my Obsidian style (callouts, code-first, Spanish) |
-| `.claude/settings.example.json` | Claude Code model, plugins, statusline, `autoMode` template (not linked; the real file lives in the private repo) |
+| `.claude/settings.json` | Claude Code settings: model, plugins, statusline, rubocop hook, permissions (`ask` before push/ssh/deploy). On the work laptop the private repo's version replaces it |
+| `.claude/statusline.sh` | Claude Code status line: ponytail mode + context usage |
+| `.claude/hooks/rubocop-check.sh` | PostToolUse hook: report-only rubocop on each Ruby file Claude edits |
 | `.config/starship.toml` | shell prompt |
 | `.config/git/ignore` | global gitignore |
 | `.config/obsidian/mcp.env.example` | template for the Obsidian MCP server credentials |
@@ -58,10 +60,9 @@ The key stays in the env file, out of `~/.claude.json`.
   break on every upgrade. Use JetBrains Settings Sync instead.
 - **Secrets** — `~/.aws`, `~/.gnupg`, `~/.ssh`, `~/.docker/config.json`, `~/.bundle/config`,
   and anything under `~/.config/niufoods/`.
-- **Claude Code `settings.json`** — it holds work-only `autoMode` config and Claude Code
-  writes into it (`/model`, `/permissions`, auto mode setup), so it lives in the private
-  repo. Settings have no include mechanism, so a public/private split would leak on the
-  next write. `.claude/settings.example.json` is a sanitized copy for reference; when you
-  change the real file, update the example without the `autoMode` details.
+- **Work-only Claude Code settings** — the private repo's `settings.json` is this repo's file plus
+  the work `autoMode` block and Atlassian MCP rules. Claude Code reads a single user `settings.json`
+  (no includes), so the private bootstrap links its own copy over this one, this bootstrap leaves
+  that link alone, and the private bootstrap prints a diff if the shared part drifts.
 - **Claude Code local state** — `~/.claude.json` (project history, MCP config) and
   `~/.claude/.credentials.json` (auth token) must never be tracked.

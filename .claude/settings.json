@@ -1,0 +1,115 @@
+{
+  "model": "opus[1m]",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/rubocop-check.sh",
+            "timeout": 90,
+            "statusMessage": "rubocop"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "awaySummaryEnabled": false,
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark",
+  "permissions": {
+    "defaultMode": "auto",
+    "allow": [
+      "Bash(bundle exec rspec *)",
+      "Bash(DISABLE_SPRING=1 bundle exec rspec *)",
+      "Bash(bundle exec rubocop *)",
+      "Bash(DISABLE_SPRING=1 bundle exec rubocop *)",
+      "Bash(bundle show *)",
+      "Bash(bundle outdated *)",
+      "Bash(gem list *)",
+      "Bash(gem contents *)",
+      "Bash(git grep *)",
+      "Bash(git ls-tree *)",
+      "Bash(git check-ignore *)",
+      "Bash(git config user.email)",
+      "Bash(git config user.name)",
+      "Bash(node --check *)",
+      "Bash(bash -n *)",
+      "Bash(npx tsc --noEmit *)",
+      "Bash(pip show *)",
+      "Bash(pip3 show *)",
+      "Bash(pip list *)",
+      "Bash(pip3 list *)",
+      "Bash(npm list *)",
+      "Bash(npm show *)",
+      "Bash(apt list *)",
+      "Bash(dpkg -l)",
+      "Bash(getent hosts *)",
+      "Bash(resolvectl status *)",
+      "Bash(resolvectl statistics *)",
+      "Bash(resolvectl query *)",
+      "Bash(systemctl is-active *)",
+      "Bash(systemctl is-enabled *)",
+      "Bash(ip route *)",
+      "Bash(journalctl *)",
+      "Bash(ping *)",
+      "Bash(docker port *)",
+      "Bash(claude doctor *)",
+      "Read(~/Work/**)",
+      "Read(~/.rbenv/**)",
+      "Read(~/.dotfiles/**)",
+      "Read(~/.dotfiles_private/**)",
+      "Read(//usr/**)",
+      "Read(//etc/docker/**)",
+      "Read(//etc/systemd/**)",
+      "Read(//run/systemd/resolve/**)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "mcp__obsidian__obsidian_simple_search",
+      "mcp__obsidian__obsidian_get_file_contents",
+      "mcp__obsidian__obsidian_batch_get_file_contents",
+      "mcp__obsidian__obsidian_list_files_in_vault",
+      "mcp__obsidian__obsidian_list_files_in_dir",
+      "mcp__obsidian__obsidian_get_recent_changes",
+      "mcp__obsidian__obsidian_get_periodic_note",
+      "mcp__obsidian__obsidian_get_recent_periodic_notes",
+      "mcp__obsidian__obsidian_append_content",
+      "mcp__obsidian__obsidian_patch_content"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(ssh *)",
+      "Bash(scp *)",
+      "Bash(cap *)",
+      "Bash(bundle exec cap *)",
+      "Bash(bundle exec rake custom:deploy*)"
+    ]
+  }
+}

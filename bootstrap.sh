@@ -12,8 +12,13 @@ cd "$DOTFILES"
 
 # The repo mirrors $HOME, so the tracked path IS the destination path.
 # git ls-files keeps this list self-maintaining: track a file, it gets linked.
-git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' -e '.claude/settings.example.json' | while IFS= read -r f; do
+git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' | while IFS= read -r f; do
     target="$HOME/$f"
+
+    # The private repo's version of a file wins (e.g. work Claude settings); don't undo it.
+    case "$(readlink "$target" 2>/dev/null)" in
+        "$HOME/.dotfiles_private/"*) echo "kept ~/$f (private override)"; continue ;;
+    esac
 
     if [ -n "$DRY_RUN" ]; then
         echo "would link ~/$f"
