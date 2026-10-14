@@ -16,6 +16,8 @@ sensitive lives in the private dotfiles repo.
 | `.selected_editor` | default `$EDITOR` |
 | `.claude/CLAUDE.md` | Global Claude Code instructions (personal rules). Imports `~/.claude/CLAUDE.niufoods.md` from the private repo when present |
 | `.claude/agents/rails-locator.md` | Claude Code subagent: read-only "where does X live" locator for Rails repos. Project specifics come from CLAUDE.md |
+| `.claude/agents/cross-repo-consumer.md` | Claude Code subagent: read-only "who consumes X" finder across sibling repos. Repo map comes from CLAUDE.md |
+| `.claude/agents/error-triage.md` | Claude Code subagent: read-only Rails log triage, root cause + file:line. Extra log locations come from CLAUDE.md |
 | `.claude/settings.example.json` | Claude Code model, plugins, statusline, `autoMode` template (not linked; the real file lives in the private repo) |
 | `.config/starship.toml` | shell prompt |
 | `.config/git/ignore` | global gitignore |
