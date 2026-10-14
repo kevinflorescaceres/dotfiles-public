@@ -21,6 +21,7 @@ sensitive lives in the private dotfiles repo.
 | `.claude/settings.example.json` | Claude Code model, plugins, statusline, `autoMode` template (not linked; the real file lives in the private repo) |
 | `.config/starship.toml` | shell prompt |
 | `.config/git/ignore` | global gitignore |
+| `.config/obsidian/mcp.env.example` | template for the Obsidian MCP server credentials |
 | `.config/Code/User/settings.json` | VS Code settings |
 | `.config/Code/User/keybindings.json` | VS Code keybindings |
 
@@ -35,6 +36,20 @@ git clone git@github.com:kevinflorescaceres/dotfiles-public.git ~/.dotfiles
 `bootstrap.sh` reads the file list from `git ls-files`, so tracking a new file is all
 that's needed for it to be linked — no list to maintain. Existing real files are moved
 to `<name>.backup`; existing symlinks are replaced. Safe to re-run.
+
+## Claude Code MCP servers
+
+User-scoped MCP servers live in `~/.claude.json`, which can't be tracked, so register them once per machine.
+Obsidian (needs the Local REST API plugin and `uv`):
+
+```zsh
+cp ~/.config/obsidian/mcp.env.example ~/.config/obsidian/mcp.env
+chmod 600 ~/.config/obsidian/mcp.env   # then fill in OBSIDIAN_API_KEY from the plugin settings
+claude mcp add --scope user obsidian -- sh -c 'set -a; . "$HOME/.config/obsidian/mcp.env"; exec uvx mcp-obsidian'
+claude mcp get obsidian                # expect: Connected
+```
+
+The key stays in the env file, out of `~/.claude.json`.
 
 ## Not in this repo
 
