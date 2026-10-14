@@ -133,7 +133,11 @@
       "mcp__claude_ai_Atlassian__transitionJiraIssue",
       "mcp__claude_ai_Atlassian__addCommentToJiraIssue",
       "mcp__claude_ai_Atlassian__addWorklogToJiraIssue",
-      "mcp__claude_ai_Atlassian__createIssueLink"
+      "mcp__claude_ai_Atlassian__createIssueLink",
+      "mcp__claude_ai_Atlassian_MCP__executeWrite"
+    ],
+    "deny": [
+      "mcp__claude_ai_Atlassian_MCP__executeDestructive"
     ]
   }
 }
