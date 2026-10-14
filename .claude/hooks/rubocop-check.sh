@@ -3,6 +3,8 @@
 # Silent unless rubocop finds offenses (exit 1); then feeds them back to Claude via exit 2.
 # Skips non-Ruby files, repos without rubocop in Gemfile.lock, and rubocop/bundler errors.
 
+command -v jq >/dev/null 2>&1 || { echo "rubocop hook: jq not installed, skipping" >&2; exit 1; }
+
 f=$(jq -r '.tool_input.file_path // empty')
 case "$f" in *.rb|*.rake|*.ru|*/Gemfile) ;; *) exit 0 ;; esac
 [ -f "$f" ] || exit 0

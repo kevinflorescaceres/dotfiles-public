@@ -2,6 +2,7 @@
 # Status line: ponytail mode tag + context window usage, colored by how full it is.
 
 input=$(cat)
+command -v jq >/dev/null 2>&1 || { printf 'statusline: jq not installed'; exit 0; }
 
 tag=$(bash "$(ls -d "$HOME"/.claude/plugins/cache/ponytail/ponytail/*/hooks/ponytail-statusline.sh 2>/dev/null | sort -V | tail -1)" 2>/dev/null <<<"$input")
 

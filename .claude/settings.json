@@ -105,6 +105,8 @@
     ],
     "ask": [
       "Bash(git push *)",
+      "Bash(git -C * push*)",
+      "Bash(git push)",
       "Bash(ssh *)",
       "Bash(scp *)",
       "Bash(cap *)",

@@ -30,7 +30,7 @@ else
   ZSH_THEME=""
 fi
 
-source "$ZSH/oh-my-zsh.sh"
+[ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
 
 if [[ -f ~/.p10k.zsh ]]; then
   source ~/.p10k.zsh
