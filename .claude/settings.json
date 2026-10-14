@@ -105,13 +105,35 @@
     ],
     "ask": [
       "Bash(git push *)",
-      "Bash(git -C * push*)",
       "Bash(git push)",
       "Bash(ssh *)",
       "Bash(scp *)",
       "Bash(cap *)",
       "Bash(bundle exec cap *)",
-      "Bash(bundle exec rake custom:deploy*)"
+      "Bash(bundle exec rake custom:deploy*)",
+      "Bash(git * push*)",
+      "Bash(gp)",
+      "Bash(gp *)",
+      "Bash(gpf*)",
+      "Bash(curl *-X POST*)",
+      "Bash(curl *-X PUT*)",
+      "Bash(curl *-X PATCH*)",
+      "Bash(curl *-X DELETE*)",
+      "Bash(curl *--request*)",
+      "Bash(curl *-d *)",
+      "Bash(curl *--data*)",
+      "Bash(npm run deploy*)",
+      "Bash(node scripts/deploy*)",
+      "Bash(aws *)",
+      "Bash(rsync *)",
+      "Bash(sftp *)",
+      "Bash(deploystatus*)",
+      "mcp__claude_ai_Atlassian__createJiraIssue",
+      "mcp__claude_ai_Atlassian__editJiraIssue",
+      "mcp__claude_ai_Atlassian__transitionJiraIssue",
+      "mcp__claude_ai_Atlassian__addCommentToJiraIssue",
+      "mcp__claude_ai_Atlassian__addWorklogToJiraIssue",
+      "mcp__claude_ai_Atlassian__createIssueLink"
     ]
   }
 }

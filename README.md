@@ -51,7 +51,7 @@ Obsidian (needs the Local REST API plugin and `uv`):
 ```zsh
 cp ~/.config/obsidian/mcp.env.example ~/.config/obsidian/mcp.env
 chmod 600 ~/.config/obsidian/mcp.env   # then fill in OBSIDIAN_API_KEY from the plugin settings
-claude mcp add --scope user obsidian -- sh -c 'set -a; . "$HOME/.config/obsidian/mcp.env"; exec uvx mcp-obsidian'
+claude mcp add --scope user obsidian -- sh -c 'set -a; . "$HOME/.config/obsidian/mcp.env"; exec uvx mcp-obsidian==0.2.3'
 claude mcp get obsidian                # expect: Connected
 ```
 
