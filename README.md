@@ -18,6 +18,7 @@ sensitive lives in the private dotfiles repo.
 | `.claude/agents/rails-locator.md` | Claude Code subagent: read-only "where does X live" locator for Rails repos. Project specifics come from CLAUDE.md |
 | `.claude/agents/cross-repo-consumer.md` | Claude Code subagent: read-only "who consumes X" finder across sibling repos. Repo map comes from CLAUDE.md |
 | `.claude/agents/error-triage.md` | Claude Code subagent: read-only Rails log triage, root cause + file:line. Extra log locations come from CLAUDE.md |
+| `.claude/skills/obsidian-notes/SKILL.md` | Claude Code skill: write vault notes in my Obsidian style (callouts, code-first, Spanish) |
 | `.claude/settings.example.json` | Claude Code model, plugins, statusline, `autoMode` template (not linked; the real file lives in the private repo) |
 | `.config/starship.toml` | shell prompt |
 | `.config/git/ignore` | global gitignore |
