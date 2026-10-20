@@ -30,6 +30,8 @@ When I ask to remember a rule or preference, or you'd save a correction as memor
 
 If the scope is unclear, ask.
 
+`~/.claude/CLAUDE*.md`, skills, agents, hooks, `settings.json` and each `~/Work/*/CLAUDE.md` are symlinks into `~/.dotfiles` / `~/.dotfiles_private`. Edit them with the Edit/Write tools or `sed -i --follow-symlinks`, never plain `sed -i`: it replaces the symlink with a real file and the repo copy goes stale.
+
 ## Work context
 
 Loaded from the private dotfiles repo when present (skipped silently otherwise):
