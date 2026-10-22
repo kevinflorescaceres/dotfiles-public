@@ -41,7 +41,7 @@ git clone git@github.com:kevinflorescaceres/dotfiles-public.git ~/.dotfiles
 
 `bootstrap.sh` reads the file list from `git ls-files`, so tracking a new file is all
 that's needed for it to be linked — no list to maintain. Existing real files are moved
-to `<name>.backup`; existing symlinks are replaced. Safe to re-run.
+to `<name>.backup.<timestamp>`; existing symlinks are replaced. Safe to re-run.
 
 ## Claude Code MCP servers
 

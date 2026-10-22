@@ -1,6 +1,6 @@
 #!/bin/sh
 # Symlink every tracked dotfile into $HOME, mirroring this repo's layout.
-# Existing real files are moved aside to <name>.backup; existing symlinks are replaced.
+# Existing real files are moved aside to <name>.backup.<timestamp>; existing symlinks are replaced.
 # Usage: ./bootstrap.sh [--dry-run]
 set -eu
 
@@ -41,8 +41,9 @@ git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' | while IFS= read -r 
         rm "$target"
     elif [ -e "$target" ]; then
         diff -u "$DOTFILES/$f" "$target" || true
-        mv "$target" "$target.backup"
-        echo "backed up ~/$f -> ~/$f.backup"
+        backup="$target.backup.$(date +%Y%m%d%H%M%S)"
+        mv "$target" "$backup"
+        echo "backed up ~/$f -> $backup"
     fi
 
     mkdir -p "$(dirname "$target")"
