@@ -10,7 +10,7 @@ Ruby on Rails developer. Treat me as a peer: skip Ruby/Rails/PostgreSQL basics a
 - No `Co-Authored-By` or other attribution trailers.
 - Never commit unless I ask; don't commit mid-session (plans, docs, specs). Prefer small, focused PRs.
 - Never push unless I ask, each time: an earlier "commit and push" is not standing permission. Same for anything else that leaves the machine (PR create/update, card comments).
-- Never merge a PR, even when it's green, approved, or I said "ship it". Stop at pushed + PR open.
+- PR merges are human-only: never merge a PR or enable auto-merge (CLI, API, MCP or browser), even if I explicitly ask for the merge or say "ship it". Stop at pushed + PR open and leave the merge to me. Permission to commit, push or open/update a PR never covers merging it. This is about PRs, not local `git merge`.
 - A fix to code introduced by an unmerged commit on the current branch gets folded into that commit (`git commit --fixup <sha>`, `GIT_SEQUENCE_EDITOR=true git rebase --autosquash -i <base>`, `git push --force-with-lease`), taking a backup branch first. Once a human has reviewed the PR, add a new commit instead. If it only has bot comments, offer both. New behavior I asked for later is always a separate commit.
 
 ## Ruby / Rails
