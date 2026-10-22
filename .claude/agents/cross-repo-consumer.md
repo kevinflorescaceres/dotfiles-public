@@ -47,6 +47,11 @@ one you're changing.
    full path ↔ path fragment, domain synonyms in the project's own language.
 4. Read just enough at each hit to confirm it's a real consumer vs. a coincidental
    name match. Distinguish definition from use.
+5. For each direct consumer, find what runs it (rake task, job, worker, cron,
+   route, boot process) and report it as a trigger, not as another consumer.
+6. Group worktrees and copies of the same repo (`<repo>_wt/*`, `<repo>-<branch>`)
+   as one app unless something shows a separate deployment. Mention branch
+   differences that touch the contract; never count folders as services.
 
 ## What to return
 
