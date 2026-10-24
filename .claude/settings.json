@@ -1,4 +1,12 @@
 {
+  "autoMode": {
+    "environment": [
+      "$defaults",
+      "**Primary use of Claude Code**: software development. Solo developer: personal and freelance projects, each its own repo under ~/code. Project specifics (clients, buckets, domains, deploy targets) live in each repo's CLAUDE.md",
+      "**Source control**: github.com/kevinflorescaceres and every repo under it, private unless the repo says otherwise",
+      "**Sensitive remote targets**: any VPS, host or environment a project deploys to (Kamal, Capistrano, etc.) counts as production"
+    ]
+  },
   "model": "opus[1m]",
   "attribution": {
     "commit": "",
