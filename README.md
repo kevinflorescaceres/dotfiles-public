@@ -19,6 +19,7 @@ sensitive lives in the private dotfiles repo.
 | `.claude/agents/cross-repo-consumer.md` | Claude Code subagent: read-only "who consumes X" finder across sibling repos. Repo map comes from CLAUDE.md |
 | `.claude/agents/error-triage.md` | Claude Code subagent: read-only Rails log triage, root cause + file:line. Extra log locations come from CLAUDE.md |
 | `.claude/skills/obsidian-notes/SKILL.md` | Claude Code skill: write vault notes in my Obsidian style (callouts, code-first, Spanish) |
+| `.claude/skills/pantheon-app-sheet/SKILL.md` | Claude Code skill: create/update an app's sheet in `~/code/app-pantheon/fichas/` from the repo's code and Pantheon's `TEMPLATE.md` |
 | `.claude/settings.json` | Claude Code settings: model, plugins, statusline, rubocop hook, permissions (`ask` before push/ssh/deploy). On the work laptop the private repo's version replaces it |
 | `.claude/statusline.sh` | Claude Code status line: ponytail mode + context usage |
 | `.claude/hooks/rubocop-check.sh` | PostToolUse hook: report-only rubocop on each Ruby file Claude edits |
