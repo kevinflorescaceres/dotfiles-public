@@ -1,5 +1,7 @@
 # Personal preferences (all projects)
 
+When a repo's own `CLAUDE.md` contradicts this file, the repo wins.
+
 ## About me
 
 Ruby on Rails developer. Treat me as a peer: skip Ruby/Rails/PostgreSQL basics and discuss trade-offs directly. Frontend (TypeScript, React/Next.js) is a secondary area: give me more context there.
@@ -7,6 +9,7 @@ Ruby on Rails developer. Treat me as a peer: skip Ruby/Rails/PostgreSQL basics a
 ## Git commits
 
 - One-line messages in Conventional Commits format: `type(scope): summary`. No body.
+- The summary's language is the repo's call: what its `CLAUDE.md` says, else what its `git log` uses, else English.
 - No `Co-Authored-By` or other attribution trailers.
 - Never commit unless I ask; don't commit mid-session (plans, docs, specs). Prefer small, focused PRs.
 - Never push unless I ask, each time: an earlier "commit and push" is not standing permission. Same for anything else that leaves the machine (PR create/update, card comments).
