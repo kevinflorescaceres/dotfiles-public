@@ -8,6 +8,8 @@
     ]
   },
   "model": "opus[1m]",
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
   "attribution": {
     "commit": "",
     "pr": ""
