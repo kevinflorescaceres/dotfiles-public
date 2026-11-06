@@ -34,7 +34,7 @@ cd "$DOTFILES"
 
 # The repo mirrors $HOME, so the tracked path IS the destination path.
 # git ls-files keeps this list self-maintaining: track a file, it gets linked.
-git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' | while IFS= read -r f; do
+git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' -e 'install-deps.sh' | while IFS= read -r f; do
     target="$HOME/$f"
 
     # The private repo's version of a file wins (e.g. work Claude settings); don't undo it.

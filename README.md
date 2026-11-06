@@ -32,10 +32,12 @@ sensitive lives in the private dotfiles repo.
 ## Setup on a new machine
 
 Needs `git` and `jq` (the bootstrap stops without them). It warns about the rest: `zsh` + oh-my-zsh,
-`claude`, `rg`, `starship`, `uv` (Obsidian MCP).
+`claude`, `rg`, `starship`, `uv` (Obsidian MCP). `install-deps.sh` installs all of them on Debian/Ubuntu;
+`git` and your SSH key still have to be there first, to clone this repo.
 
 ```zsh
 git clone git@github.com:kevinflorescaceres/dotfiles-public.git ~/.dotfiles
+~/.dotfiles/install-deps.sh
 ~/.dotfiles/bootstrap.sh --dry-run   # see what it would link
 ~/.dotfiles/bootstrap.sh
 ```
