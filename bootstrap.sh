@@ -9,9 +9,19 @@ DRY_RUN=""
 [ "${1:-}" = "--dry-run" ] && DRY_RUN=1
 
 # git and jq are required (jq: Claude statusline, rubocop hook); the rest only warn.
+missing=""
 for c in git jq; do
-    command -v "$c" >/dev/null 2>&1 || { echo "missing $c: install it first" >&2; exit 1; }
+    command -v "$c" >/dev/null 2>&1 || missing="$missing $c"
 done
+if [ -n "$missing" ]; then
+    {
+        echo "error: missing required tools:$missing"
+        echo "Nothing was linked. Install them, then re-run this script:"
+        echo "  Debian/Ubuntu: sudo apt install$missing"
+        echo "  macOS:         brew install$missing"
+    } >&2
+    exit 1
+fi
 warn() { command -v "$1" >/dev/null 2>&1 || echo "warning: no $1: $2" >&2; }
 warn zsh "the shell config goes unused"
 warn claude "no Claude Code"
