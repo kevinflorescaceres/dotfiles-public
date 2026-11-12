@@ -22,6 +22,11 @@ Ruby on Rails developer. Treat me as a peer: skip Ruby/Rails/PostgreSQL basics a
 - No new service objects for simple logic: use a model method or a plain method unless the complexity warrants it.
 - Migration filename prefix comes from `date -u +%Y%m%d%H%M%S`, never a rounded or made-up value. Keep `db/schema.rb`'s `version:` in sync with it.
 
+## Subagents
+
+- Whole-repo audits or reviews: use `code-auditor`, at most 4 at once, each with a narrow slice. Ask before launching more. It doesn't get CLAUDE.md, so pass the project context it needs in the prompt.
+- Finding where something lives: `rails-locator` or `cross-repo-consumer`, not `general-purpose`.
+
 ## Remembering things
 
 When I ask to remember a rule or preference, or you'd save a correction as memory, pick the scope:
