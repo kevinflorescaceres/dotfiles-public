@@ -75,10 +75,12 @@ alias gr='git reset'
 alias gco='git checkout'
 alias gcod='git checkout development'
 alias gcor='git checkout release'
+alias gcos='git checkout staging'
 alias gcot='git checkout test'
 alias grb='git rebase'
 alias grbd='git rebase development'
 alias grbr='git rebase release'
+alias grbs='git rebase staging'
 alias grbt='git rebase test'
 
 gwt() { git worktree add -b "$1" "../$1" "${@:2}"; }
