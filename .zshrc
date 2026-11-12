@@ -100,5 +100,22 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias update='sudo apt update && sudo apt upgrade'
 
+# Local LLM (ollama)
+export AI_MODEL="qwen2.5-coder:7b"
+ai()  { ollama run "$AI_MODEL" "$*"; }
+ai4() { ollama run qwen3:4b "$*"; }
+alias aiperf='powerprofilesctl set performance'
+alias aibal='powerprofilesctl set balanced'
+
+aibench() {
+  local models=("$@")
+  (( $# )) || models=(qwen3:4b qwen2.5-coder:7b)
+  for m in $models; do
+    echo "== $m"
+    ollama run "$m" --verbose "Write a Ruby method that returns the second largest number in an array." 2>&1 \
+      | grep -E 'load duration|prompt eval rate|^eval rate'
+  done
+}
+
 # Source extra configs and aliases from private repository
 [ -f "$HOME/.zshrc_private" ] && source "$HOME/.zshrc_private"
