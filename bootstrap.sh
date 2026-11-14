@@ -38,9 +38,12 @@ git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' -e 'install-deps.sh' 
     target="$HOME/$f"
 
     # The private repo's version of a file wins (e.g. work Claude settings); don't undo it.
-    case "$(readlink "$target" 2>/dev/null)" in
-        "$HOME/.dotfiles_private/"*) echo "kept ~/$f (private override)"; continue ;;
-    esac
+    # A broken link (the private repo is gone) falls through and gets replaced.
+    if [ -e "$target" ]; then
+        case "$(readlink "$target" 2>/dev/null)" in
+            "$HOME/.dotfiles_private/"*) echo "kept ~/$f (private override)"; continue ;;
+        esac
+    fi
 
     if [ -n "$DRY_RUN" ]; then
         echo "would link ~/$f"
