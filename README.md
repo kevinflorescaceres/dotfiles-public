@@ -11,10 +11,10 @@ sensitive lives in the private dotfiles repo.
 | Path | What |
 |---|---|
 | `.zshrc` | z shell config |
-| `.gitconfig` | git config (work identity only for repos with a `bitbucket.org/niusushi` remote) |
+| `.gitconfig` | git config. Loads `~/.gitconfig_work` from the private repo when present |
 | `.nanorc` | nano editor |
 | `.selected_editor` | default `$EDITOR` |
-| `.claude/CLAUDE.md` | Global Claude Code instructions (personal rules). Imports `~/.claude/CLAUDE.niufoods.md` from the private repo when present |
+| `.claude/CLAUDE.md` | Global Claude Code instructions (personal rules). Imports `~/.claude/CLAUDE.work.md` from the private repo when present |
 | `.claude/agents/rails-locator.md` | Claude Code subagent: read-only "where does X live" locator for Rails repos. Project specifics come from CLAUDE.md |
 | `.claude/agents/cross-repo-consumer.md` | Claude Code subagent: read-only "who consumes X" finder across sibling repos. Repo map comes from CLAUDE.md |
 | `.claude/agents/error-triage.md` | Claude Code subagent: read-only Rails log triage, root cause + file:line. Extra log locations come from CLAUDE.md |
@@ -65,7 +65,7 @@ The key stays in the env file, out of `~/.claude.json`.
 - **RubyMine** — `~/.config/JetBrains/RubyMine<version>/` is version-stamped, so symlinks
   break on every upgrade. Use JetBrains Settings Sync instead.
 - **Secrets** — `~/.aws`, `~/.gnupg`, `~/.ssh`, `~/.docker/config.json`, `~/.bundle/config`,
-  and anything under `~/.config/niufoods/`.
+  and work-specific folders under `~/.config/`.
 - **Work-only Claude Code settings** — the private repo's `settings.json` is this repo's file plus
   the work `autoMode` block and Atlassian MCP rules. Claude Code reads a single user `settings.json`
   (no includes), so the private bootstrap links its own copy over this one, this bootstrap leaves

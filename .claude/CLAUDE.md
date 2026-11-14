@@ -32,7 +32,7 @@ Ruby on Rails developer. Treat me as a peer: skip Ruby/Rails/PostgreSQL basics a
 When I ask to remember a rule or preference, or you'd save a correction as memory, pick the scope:
 
 - Personal, every project → `~/.claude/CLAUDE.md`
-- Every NIU Foods repo → `~/.claude/CLAUDE.niufoods.md`
+- Every work repo → `~/.claude/CLAUDE.work.md`
 - One repo only → that repo's `CLAUDE.md`
 - A fact about current work (state, TODO, pointer that may go stale) → auto memory
 
@@ -44,4 +44,4 @@ If the scope is unclear, ask.
 
 Loaded from the private dotfiles repo when present (skipped silently otherwise):
 
-@~/.claude/CLAUDE.niufoods.md
+@~/.claude/CLAUDE.work.md

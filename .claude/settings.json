@@ -136,7 +136,6 @@
       "Bash(aws *)",
       "Bash(rsync *)",
       "Bash(sftp *)",
-      "Bash(deploystatus*)",
       "mcp__claude_ai_Atlassian__createJiraIssue",
       "mcp__claude_ai_Atlassian__editJiraIssue",
       "mcp__claude_ai_Atlassian__transitionJiraIssue",

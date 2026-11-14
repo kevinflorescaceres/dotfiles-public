@@ -27,7 +27,6 @@
 [user]
   name = Kevin Flores Cáceres
   email = kevin.flores.c@gmail.com
-[includeIf "hasconfig:remote.*.url:git@bitbucket.org:niusushi/**"]
-  path = ~/.gitconfig_private
-[includeIf "hasconfig:remote.*.url:https://*@bitbucket.org/niusushi/**"]
-  path = ~/.gitconfig_private
+# Keep last, so it can override [user]. Git skips it when the file doesn't exist.
+[include]
+  path = ~/.gitconfig_work
