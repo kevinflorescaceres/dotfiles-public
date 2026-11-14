@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>__TITLE__</title>
+<style>
+  :root { --top:52px; --naranja:#E9501D; --oscuro:#0E3C59; --medio:#587589; --azul:#004572; --linea:#d5dde3;
+          --add:#dcf5e0; --add-n:#bfe8c6; --del:#fbe0e0; --del-n:#f3c4c4; --hunk:#eef3f7; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px system-ui, sans-serif; color:var(--oscuro); background:#f7f9fa; }
+  header { position:sticky; top:0; z-index:5; display:flex; flex-wrap:wrap; gap:.6rem; align-items:center;
+           padding:.6rem 1rem; background:var(--oscuro); color:#fff; }
+  header h1 { margin:0 1rem 0 0; font-size:1rem; }
+  header select, header input, header button { font:inherit; padding:.35rem .6rem; border-radius:6px; border:1px solid var(--medio); }
+  header button { background:#fff; color:var(--oscuro); cursor:pointer; }
+  header button.primario { background:var(--naranja); color:#fff; border-color:var(--naranja); font-weight:600; }
+  .progreso { margin-left:auto; display:flex; align-items:center; gap:.5rem; }
+  .barra { width:140px; height:8px; background:#ffffff40; border-radius:4px; overflow:hidden; }
+  .barra > div { height:100%; background:var(--naranja); }
+  .layout { display:grid; grid-template-columns: 320px 1fr; }
+  nav { position:sticky; top:var(--top); height:calc(100vh - var(--top)); overflow:auto; padding:.75rem; border-right:1px solid var(--linea); background:#fff; }
+  nav #filtro { width:100%; padding:.4rem; margin-bottom:.5rem; border:1px solid var(--linea); border-radius:6px; font:inherit; }
+  nav ul { list-style:none; margin:0; padding:0; }
+  nav li { display:flex; gap:.4rem; align-items:center; padding:.25rem .3rem; border-radius:4px; cursor:pointer; font-size:12.5px; }
+  nav li:hover { background:var(--hunk); }
+  nav li.visto { opacity:.45; }
+  nav li .ruta { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  nav li .dir { color:var(--medio); font-size:11px; margin-left:.3rem; }
+  main { padding:1rem; min-width:0; }
+  .commit { margin:0 0 1rem; padding:.6rem .8rem; background:#fff; border:1px solid var(--linea); border-left:5px solid var(--naranja); border-radius:6px; }
+  .archivo { margin-bottom:1rem; background:#fff; border:1px solid var(--linea); border-radius:6px; overflow:hidden; }
+  .archivo.activo { outline:2px solid var(--naranja); }
+  .cabecera { display:flex; gap:.6rem; align-items:center; padding:.5rem .7rem; background:var(--hunk); border-bottom:1px solid var(--linea); }
+  .cabecera .ruta { font:600 13px ui-monospace, monospace; flex:1; cursor:pointer; }
+  .st { font-size:11px; padding:.1rem .4rem; border-radius:4px; background:#e3e8ec; }
+  .st.A { background:var(--add-n); } .st.D { background:var(--del-n); } .st.R { background:#fde7b0; }
+  .cuenta .a { color:#1a7f37; } .cuenta .d { color:#b42318; margin-left:.3rem; }
+  label.visto { display:flex; gap:.3rem; align-items:center; font-size:12px; cursor:pointer; }
+  table { width:100%; border-collapse:collapse; table-layout:fixed; font:12px/1.5 ui-monospace, monospace; }
+  col.n { width:48px; } col.t { width:calc(50% - 48px); }
+  td { padding:0 .4rem; white-space:pre-wrap; word-break:break-all; vertical-align:top; }
+  td.n { color:#8a99a6; text-align:right; user-select:none; cursor:pointer; }
+  td.n:hover { color:var(--naranja); font-weight:700; }
+  td.del { background:var(--del); } td.n.del { background:var(--del-n); }
+  td.add { background:var(--add); } td.n.add { background:var(--add-n); }
+  td.vacio { background:#f3f5f7; }
+  tr.hunk td { background:var(--hunk); color:var(--medio); padding:.2rem .5rem; }
+  tr.nota td { background:#fff8e6; padding:.5rem; border-top:1px solid #f0d58a; border-bottom:1px solid #f0d58a; white-space:normal; }
+  tr.nota textarea { width:100%; min-height:3.5rem; font:13px system-ui, sans-serif; padding:.4rem; border:1px solid #e5c76b; border-radius:4px; }
+  tr.nota .acciones { display:flex; gap:.5rem; margin-top:.3rem; font:12px system-ui, sans-serif; }
+  tr.nota button { font:inherit; padding:.2rem .6rem; border-radius:4px; border:1px solid var(--medio); background:#fff; cursor:pointer; }
+  tr.nota .guardada { font:13px system-ui, sans-serif; white-space:pre-wrap; }
+  .oculto { display:none; }
+  .ayuda { font-size:12px; color:var(--medio); margin:.3rem 0 .8rem; }
+  dialog { width:min(800px, 90vw); border:1px solid var(--linea); border-radius:8px; }
+  dialog textarea { width:100%; height:50vh; font:12px ui-monospace, monospace; }
+</style>
+</head>
+<body>
+<header>
+  <h1>__TITLE__</h1>
+  <select id="vista" aria-label="Vista"></select>
+  <button id="expandir">Expandir todo</button>
+  <button id="plegar">Plegar todo</button>
+  <label><input type="checkbox" id="pendientes"> Solo sin ver</label>
+  <button id="copiar" class="primario">Copiar comentarios (0)</button>
+  <div class="progreso"><span id="cuenta"></span><div class="barra"><div id="barra"></div></div></div>
+</header>
+<div class="layout">
+  <nav>
+    <input id="filtro" placeholder="Filtrar archivos…" aria-label="Filtrar archivos">
+    <ul id="lista"></ul>
+  </nav>
+  <main>
+    <p class="ayuda">Clic en un número de línea para comentar · <b>j</b>/<b>k</b> archivo siguiente/anterior · <b>v</b> marcar visto · los comentarios y el «visto» se guardan en este navegador.</p>
+    <div id="commit"></div>
+    <div id="archivos"></div>
+  </main>
+</div>
+<dialog id="dialogo"><p>No se pudo copiar solo. Copia este texto y pégalo en el chat:</p><textarea readonly></textarea><form method="dialog"><button>Cerrar</button></form></dialog>
+<script type="application/json" id="datos">__DATA__</script>
+<script>
+const DATA = JSON.parse(document.getElementById("datos").textContent);
+const NS = "review:" + DATA.title;
+const $ = (s) => document.querySelector(s);
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const comments = JSON.parse(localStorage.getItem(NS + ":comments") || "[]");
+const saveComments = () => { localStorage.setItem(NS + ":comments", JSON.stringify(comments)); $("#copiar").textContent = `Copiar comentarios (${comments.length})`; };
+const viewedKey = (v, f) => `${NS}:viewed:${v.key}:${f.path}:${f.blob}`;
+const isViewed = (v, f) => localStorage.getItem(viewedKey(v, f)) === "1";
+let current = DATA.views[0], active = 0;
+
+DATA.views.forEach((v, i) => { const o = el("option", null, `${v.label} — ${v.files.length} archivos`); o.value = i; $("#vista").append(o); });
+$("#vista").onchange = (e) => { current = DATA.views[e.target.value]; render(); };
+
+function progress() {
+  const done = current.files.filter((f) => isViewed(current, f)).length;
+  $("#cuenta").textContent = `${done}/${current.files.length} vistos`;
+  $("#barra").style.width = (current.files.length ? 100 * done / current.files.length : 0) + "%";
+}
+
+function setViewed(f, value, card, item) {
+  localStorage.setItem(viewedKey(current, f), value ? "1" : "0");
+  card.querySelector(".visto input").checked = value;
+  card.querySelector("table").classList.toggle("oculto", value);
+  item.classList.toggle("visto", value);
+  progress(); applyFilters();
+}
+
+function noteRow(f, side, line, code, existing) {
+  const tr = el("tr", "nota"), td = el("td"); td.colSpan = 4; tr.append(td);
+  const show = (c) => {
+    td.replaceChildren();
+    const p = el("div", "guardada", `💬 ${c.text}`), acts = el("div", "acciones");
+    const edit = el("button", null, "Editar"), del = el("button", null, "Borrar");
+    edit.onclick = () => form(c); del.onclick = () => { comments.splice(comments.indexOf(c), 1); saveComments(); tr.remove(); };
+    acts.append(edit, del); td.append(p, acts);
+  };
+  const form = (c) => {
+    td.replaceChildren();
+    const ta = el("textarea"); ta.value = c ? c.text : ""; ta.placeholder = `Comentario sobre ${f.path}:${line}`;
+    const acts = el("div", "acciones"), ok = el("button", null, "Guardar"), cancel = el("button", null, "Cancelar");
+    ok.onclick = () => {
+      const text = ta.value.trim(); if (!text) return;
+      if (c) c.text = text; else { c = { view: current.label, path: f.path, side, line, code, text }; comments.push(c); }
+      saveComments(); show(c);
+    };
+    cancel.onclick = () => c ? show(c) : tr.remove();
+    acts.append(ok, cancel); td.append(ta, acts); ta.focus();
+  };
+  existing ? show(existing) : form(null);
+  return tr;
+}
+
+function cell(no, text, type, side, f, tr) {
+  const n = el("td", "n " + (no == null ? "vacio" : type), no == null ? "" : no);
+  const t = el("td", no == null ? "vacio" : type, no == null ? "" : text);
+  if (no != null) n.onclick = () => tr.after(noteRow(f, side, no, text, null));
+  return [n, t];
+}
+
+function renderFile(f, idx) {
+  const card = el("section", "archivo"); card.id = "f" + idx; card.dataset.path = f.path;
+  const head = el("div", "cabecera");
+  const path = el("span", "ruta", f.old ? `${f.old} → ${f.path}` : f.path);
+  const st = el("span", "st " + f.status, { A: "nuevo", M: "modificado", D: "borrado", R: "renombrado" }[f.status]);
+  const count = el("span", "cuenta"); count.append(el("span", "a", "+" + f.add), el("span", "d", "−" + f.del));
+  const lab = el("label", "visto"), box = el("input"); box.type = "checkbox"; lab.append(box, "Visto");
+  head.append(path, st, count, lab); card.append(head);
+  const table = el("table"), cg = el("colgroup");
+  ["n", "t", "n", "t"].forEach((c) => { const col = el("col", c); cg.append(col); });
+  table.append(cg);
+  if (f.binary) table.append(Object.assign(el("tr"), { innerHTML: "<td colspan=4>Archivo binario</td>" }));
+  f.hunks.forEach((h) => {
+    const hr = el("tr", "hunk"), hd = el("td", null, h.header); hd.colSpan = 4; hr.append(hd); table.append(hr);
+    h.rows.forEach(([on, ot, oty, nn, nt, nty]) => {
+      const tr = el("tr");
+      tr.append(...cell(on, ot, oty, "antes", f, tr), ...cell(nn, nt, nty, "después", f, tr));
+      table.append(tr);
+      comments.filter((c) => c.view === current.label && c.path === f.path &&
+        ((c.side === "después" && c.line === nn && nn != null) || (c.side === "antes" && c.line === on && on != null)))
+        .forEach((c) => tr.after(noteRow(f, c.side, c.line, c.code, c)));
+    });
+  });
+  card.append(table);
+  path.onclick = () => table.classList.toggle("oculto");
+  return card;
+}
+
+function render() {
+  const list = $("#lista"), box = $("#archivos"); list.replaceChildren(); box.replaceChildren(); active = 0;
+  $("#commit").replaceChildren();
+  if (current.key !== "all") $("#commit").append(el("div", "commit", current.label));
+  current.files.forEach((f, i) => {
+    const card = renderFile(f, i);
+    const item = el("li"); item.dataset.path = f.path;
+    const box2 = el("input"); box2.type = "checkbox"; box2.onclick = (e) => { e.stopPropagation(); setViewed(f, box2.checked, card, item); };
+    const st = el("span", "st " + f.status, f.status);
+    const cnt = el("span", "cuenta"); cnt.append(el("span", "a", "+" + f.add), el("span", "d", "−" + f.del));
+    const name = el("span", "ruta"), slash = f.path.lastIndexOf("/");
+    name.append(f.path.slice(slash + 1), el("span", "dir", slash > 0 ? f.path.slice(0, slash) : ""));
+    item.title = f.path;
+    item.append(box2, st, name, cnt);
+    item.onclick = () => { active = i; focusFile(); };
+    card.querySelector(".visto input").onchange = (e) => { box2.checked = e.target.checked; setViewed(f, e.target.checked, card, item); };
+    if (isViewed(current, f)) { box2.checked = true; card.querySelector(".visto input").checked = true; card.querySelector("table").classList.add("oculto"); item.classList.add("visto"); }
+    list.append(item); box.append(card);
+  });
+  progress(); applyFilters();
+}
+
+function applyFilters() {
+  const q = $("#filtro").value.toLowerCase(), pending = $("#pendientes").checked;
+  current.files.forEach((f, i) => {
+    const hide = (q && !f.path.toLowerCase().includes(q)) || (pending && isViewed(current, f));
+    document.getElementById("f" + i).classList.toggle("oculto", hide);
+    $("#lista").children[i].classList.toggle("oculto", hide);
+  });
+}
+
+function visibleIdx() { return current.files.map((_, i) => i).filter((i) => !document.getElementById("f" + i).classList.contains("oculto")); }
+function focusFile() {
+  document.querySelectorAll(".archivo.activo").forEach((c) => c.classList.remove("activo"));
+  const card = document.getElementById("f" + active); if (!card) return;
+  card.classList.add("activo"); window.scrollTo({ top: card.offsetTop - $("header").offsetHeight - 8, behavior: "smooth" });
+}
+
+$("#filtro").oninput = applyFilters;
+$("#pendientes").onchange = applyFilters;
+$("#expandir").onclick = () => document.querySelectorAll(".archivo table").forEach((t) => t.classList.remove("oculto"));
+$("#plegar").onclick = () => document.querySelectorAll(".archivo table").forEach((t) => t.classList.add("oculto"));
+$("#copiar").onclick = async () => {
+  if (!comments.length) return;
+  const text = "Comentarios de revisión:\n\n" + comments.map((c) =>
+    `- \`${c.path}:${c.line}\` (${c.side}, ${c.view})\n  > \`${c.code.trim()}\`\n  ${c.text.replace(/\n/g, "\n  ")}`).join("\n");
+  try { await navigator.clipboard.writeText(text); $("#copiar").textContent = "¡Copiado!"; setTimeout(saveComments, 1500); }
+  catch { const d = $("#dialogo"); d.querySelector("textarea").value = text; d.showModal(); }
+};
+document.addEventListener("keydown", (e) => {
+  if (["TEXTAREA", "INPUT", "SELECT"].includes(e.target.tagName)) return;
+  const vis = visibleIdx(), pos = vis.indexOf(active);
+  if (e.key === "j") { active = vis[Math.min(pos + 1, vis.length - 1)] ?? active; focusFile(); }
+  if (e.key === "k") { active = vis[Math.max(pos - 1, 0)] ?? active; focusFile(); }
+  if (e.key === "v") document.getElementById("f" + active)?.querySelector(".visto input").click();
+});
+const fitTop = () => document.documentElement.style.setProperty("--top", $("header").offsetHeight + "px");
+addEventListener("resize", fitTop); fitTop();
+saveComments(); render();
+</script>
+</body>
+</html>
