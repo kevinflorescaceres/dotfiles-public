@@ -1,10 +1,17 @@
 #!/bin/sh
-# Install everything bootstrap.sh needs or warns about. Debian/Ubuntu only. Safe to re-run.
+# Install everything bootstrap.sh needs or warns about. Debian/Ubuntu (apt) or Arch (pacman). Safe to re-run.
 # Run it before bootstrap.sh. Open a new terminal afterwards to pick up zsh and the new PATH.
 set -eu
 
-sudo apt update
-sudo apt install -y git jq curl zsh ripgrep
+if command -v apt-get >/dev/null 2>&1; then
+    sudo apt-get update
+    sudo apt-get install -y git jq curl zsh ripgrep
+elif command -v pacman >/dev/null 2>&1; then
+    sudo pacman -Syu --needed --noconfirm git jq curl zsh ripgrep
+else
+    echo "error: no apt-get or pacman: install git jq curl zsh ripgrep by hand" >&2
+    exit 1
+fi
 
 # --keep-zshrc: without it, oh-my-zsh replaces ~/.zshrc, which may already be our symlink.
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
