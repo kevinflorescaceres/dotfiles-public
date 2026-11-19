@@ -37,6 +37,13 @@ cd "$DOTFILES"
 git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' -e 'install-deps.sh' | while IFS= read -r f; do
     target="$HOME/$f"
 
+    # Already resolves to the repo file (our link, or a linked parent directory): moving it
+    # aside would move the repo file itself and leave a self-referencing link.
+    if [ "$target" -ef "$DOTFILES/$f" ]; then
+        [ -L "$target" ] || echo "kept ~/$f (reached through a linked directory)"
+        continue
+    fi
+
     # The private repo's version of a file wins (e.g. work Claude settings); don't undo it.
     # A broken link (the private repo is gone) falls through and gets replaced.
     if [ -e "$target" ]; then
