@@ -18,6 +18,7 @@ if [ -n "$missing" ]; then
         echo "error: missing required tools:$missing"
         echo "Nothing was linked. Install them, then re-run this script:"
         echo "  Debian/Ubuntu: sudo apt install$missing"
+        echo "  Arch/CachyOS:  sudo pacman -S$missing"
         echo "  macOS:         brew install$missing"
     } >&2
     exit 1

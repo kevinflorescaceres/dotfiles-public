@@ -98,7 +98,13 @@ alias home='cd ~'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias update='sudo apt update && sudo apt upgrade'
+if command -v paru >/dev/null 2>&1; then
+  alias update='paru -Syu'
+elif command -v pacman >/dev/null 2>&1; then
+  alias update='sudo pacman -Syu'
+else
+  alias update='sudo apt update && sudo apt upgrade'
+fi
 
 # Local LLM (ollama)
 export AI_MODEL="qwen2.5-coder:7b"
