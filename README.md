@@ -28,6 +28,8 @@ sensitive lives in the private dotfiles repo.
 | `.config/obsidian/mcp.env.example` | template for the Obsidian MCP server credentials |
 | `.config/Code/User/settings.json` | VS Code settings |
 | `.config/Code/User/keybindings.json` | VS Code keybindings |
+| `.config/Code - OSS/User/settings.json` | Code OSS settings (Arch `code` package): Ruby LSP + RuboCop, Prettier/ESLint, GitLens |
+| `.config/Code - OSS/extensions.txt` | Code OSS extensions, all from Open VSX. Install with `xargs -n1 code --install-extension < ~/.config/Code\ -\ OSS/extensions.txt` |
 
 ## Setup on a new machine
 

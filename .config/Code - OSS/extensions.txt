@@ -1,0 +1,9 @@
+Shopify.ruby-lsp
+KoichiSasada.vscode-rdbg
+x-ror.ruby-templates
+eamodio.gitlens
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+bradlc.vscode-tailwindcss
+jeanp413.open-remote-ssh
+Anthropic.claude-code

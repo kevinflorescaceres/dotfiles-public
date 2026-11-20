@@ -1,0 +1,32 @@
+{
+    // Code OSS (Arch `code` package). Extensions come from Open VSX: see ../extensions.txt
+    "editor.tabSize": 2,
+    "editor.minimap.enabled": false,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "telemetry.telemetryLevel": "off",
+
+    "git.confirmSync": false,
+    "git.mergeEditor": true,
+    "gitlens.views.repositories.files.layout": "list",
+    "gitlens.views.repositories.showStashes": true,
+
+    // Ruby LSP formats and lints with the repo's own RuboCop config. ruby-lsp-rails loads automatically in Rails apps.
+    "rubyLsp.formatter": "rubocop",
+    "rubyLsp.linters": ["rubocop"],
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp"
+    },
+
+    "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][css][scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "eslint.useFlatConfig": true,
+
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "keep"
+    }
+}
