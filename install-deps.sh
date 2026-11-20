@@ -3,11 +3,17 @@
 # Run it before bootstrap.sh. Open a new terminal afterwards to pick up zsh and the new PATH.
 set -eu
 
+DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+wsl=""
+grep -qi microsoft /proc/version 2>/dev/null && wsl=1
+
 if command -v apt-get >/dev/null 2>&1; then
     sudo apt-get update
     sudo apt-get install -y git jq curl zsh ripgrep
 elif command -v pacman >/dev/null 2>&1; then
-    sudo pacman -Syu --needed --noconfirm git jq curl zsh ripgrep
+    sudo pacman -Syu --needed --noconfirm git jq curl zsh ripgrep code
+    # Code - OSS (Arch's `code`) installs from Open VSX
+    xargs -n1 code --install-extension < "$DOTFILES/.config/Code - OSS/extensions.txt"
 else
     echo "error: no apt-get or pacman: install git jq curl zsh ripgrep by hand" >&2
     exit 1
@@ -27,3 +33,7 @@ case "${SHELL:-}" in
     */zsh) ;;
     *) chsh -s "$(command -v zsh)" ;;
 esac
+
+# On WSL, Obsidian runs on Windows with its own copy of the vault.
+vault="$HOME/Documents/Obsidian Vault"
+[ -n "$wsl" ] || [ -d "$vault/.git" ] || git clone git@github.com:kevinflorescaceres/personal-obsidian-vault.git "$vault"

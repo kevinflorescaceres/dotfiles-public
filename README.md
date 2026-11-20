@@ -30,13 +30,14 @@ sensitive lives in the private dotfiles repo.
 | `.config/Code/User/keybindings.json` | VS Code keybindings |
 | `.vscode-server/data/Machine/settings.json` | symlink to the VS Code settings above: VS Code on Windows ignores `~/.config/Code` in WSL but reads these Machine settings inside WSL (and on Remote-SSH hosts). UI-only settings in it are ignored there |
 | `.config/Code - OSS/User/settings.json` | Code OSS settings (Arch `code` package): Ruby LSP + RuboCop, Prettier/ESLint, GitLens |
-| `.config/Code - OSS/extensions.txt` | Code OSS extensions, all from Open VSX. Install with `xargs -n1 code --install-extension < ~/.config/Code\ -\ OSS/extensions.txt` |
+| `.config/Code - OSS/extensions.txt` | Code OSS extensions, all from Open VSX. `install-deps.sh` installs Code OSS and these on Arch |
 
 ## Setup on a new machine
 
 Needs `git` and `jq` (the bootstrap stops without them). It warns about the rest: `zsh` + oh-my-zsh,
 `claude`, `rg`, `starship`, `uv` (Obsidian MCP). `install-deps.sh` installs all of them on Debian/Ubuntu or Arch;
-`git` and your SSH key still have to be there first, to clone this repo.
+`git` and your SSH key still have to be there first, to clone this repo. On Arch it also installs Code OSS with
+its extensions, and everywhere but WSL it clones the Obsidian vault to `~/Documents/Obsidian Vault`.
 
 ```zsh
 git clone git@github.com:kevinflorescaceres/dotfiles-public.git ~/.dotfiles
