@@ -1,3 +1,6 @@
+# Keep only the first copy of each PATH entry, so nested shells don't stack duplicates
+typeset -U path PATH
+
 # Optional PATH additions
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
@@ -31,6 +34,10 @@ else
 fi
 
 [ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
+
+# After oh-my-zsh, which caps the history file at 10000 entries and drops the oldest
+HISTSIZE=100000
+SAVEHIST=100000
 
 if [[ -f ~/.p10k.zsh ]]; then
   source ~/.p10k.zsh
