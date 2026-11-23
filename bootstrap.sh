@@ -48,7 +48,7 @@ git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' -e 'install-deps.sh' 
     # The private repo's version of a file wins (e.g. work Claude settings); don't undo it.
     # A broken link (the private repo is gone) falls through and gets replaced.
     if [ -e "$target" ]; then
-        case "$(readlink "$target" 2>/dev/null)" in
+        case "$(readlink -f "$target" 2>/dev/null)" in
             "$HOME/.dotfiles_private/"*) echo "kept ~/$f (private override)"; continue ;;
         esac
     fi
@@ -68,6 +68,6 @@ git ls-files | grep -v -x -e 'README.md' -e 'bootstrap.sh' -e 'install-deps.sh' 
     fi
 
     mkdir -p "$(dirname "$target")"
-    ln -s "$DOTFILES/$f" "$target"
+    ln -sr "$DOTFILES/$f" "$target"
     echo "linked ~/$f"
 done
