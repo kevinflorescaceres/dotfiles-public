@@ -183,6 +183,14 @@
     "simplify": "user-invocable-only",
     "anthropic-skills:morning": "user-invocable-only",
     "anthropic-skills:import-memory": "user-invocable-only",
-    "anthropic-skills:skill-creator": "user-invocable-only"
+    "anthropic-skills:skill-creator": "user-invocable-only",
+    "ponytail:ponytail-audit": "user-invocable-only",
+    "ponytail:ponytail-review": "user-invocable-only",
+    "superpowers:brainstorming": "user-invocable-only",
+    "superpowers:writing-plans": "user-invocable-only",
+    "superpowers:executing-plans": "user-invocable-only",
+    "superpowers:subagent-driven-development": "user-invocable-only",
+    "superpowers:test-driven-development": "user-invocable-only",
+    "superpowers:using-git-worktrees": "user-invocable-only"
   }
 }
