@@ -19,6 +19,18 @@
     "command": "~/.claude/statusline.sh"
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|mcp__.*Atlassian.*__execute.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/block-pr-merge.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Edit|Write",
