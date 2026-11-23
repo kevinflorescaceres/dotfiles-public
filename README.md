@@ -24,6 +24,7 @@ sensitive lives in the private dotfiles repo.
 | `.claude/statusline.sh` | Claude Code status line: ponytail mode + context usage |
 | `.claude/hooks/rubocop-check.sh` | PostToolUse hook: report-only rubocop on each Ruby file Claude edits |
 | `.config/starship.toml` | shell prompt |
+| `.config/zellij/config.kdl` | Zellij (terminal multiplexer, runs inside Konsole / GNOME Terminal / Windows Terminal): starts locked, `Ctrl+g` toggles its shortcuts. `install-deps.sh` installs it (pacman on Arch, the upstream binary in `~/.local/bin` elsewhere) |
 | `.config/git/ignore` | global gitignore |
 | `.config/obsidian/mcp.env.example` | template for the Obsidian MCP server credentials |
 | `.config/Code/User/settings.json` | VS Code settings |

@@ -1,0 +1,4 @@
+// Start locked: every key goes to zsh/vim until Ctrl+g unlocks Zellij's shortcuts.
+default_mode "locked"
+show_startup_tips false
+show_release_notes false

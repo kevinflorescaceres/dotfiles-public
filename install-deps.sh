@@ -11,7 +11,7 @@ if command -v apt-get >/dev/null 2>&1; then
     sudo apt-get update
     sudo apt-get install -y git jq curl zsh ripgrep
 elif command -v pacman >/dev/null 2>&1; then
-    sudo pacman -Syu --needed --noconfirm git jq curl zsh ripgrep code
+    sudo pacman -Syu --needed --noconfirm git jq curl zsh ripgrep zellij code
     # Code - OSS (Arch's `code`) installs from Open VSX
     xargs -n1 code --install-extension < "$DOTFILES/.config/Code - OSS/extensions.txt"
 else
@@ -25,6 +25,8 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     omz_installer="$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     sh -c "$omz_installer" "" --unattended --keep-zshrc
 fi
+# Ubuntu's zellij is missing or old: take the upstream release binary
+command -v zellij >/dev/null 2>&1 || { mkdir -p "$HOME/.local/bin" && curl -fsSL "https://github.com/zellij-org/zellij/releases/latest/download/zellij-$(uname -m)-unknown-linux-musl.tar.gz" | tar -xz -C "$HOME/.local/bin" zellij; }
 command -v starship >/dev/null 2>&1 || curl -sS https://starship.rs/install.sh | sh -s -- --yes
 command -v uvx >/dev/null 2>&1 || curl -LsSf https://astral.sh/uv/install.sh | sh
 command -v claude >/dev/null 2>&1 || curl -fsSL https://claude.ai/install.sh | bash
