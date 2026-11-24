@@ -77,7 +77,7 @@
   "awaySummaryEnabled": false,
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
-  "theme": "dark",
+  "theme": "auto",
   "permissions": {
     "defaultMode": "auto",
     "allow": [
