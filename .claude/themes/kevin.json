@@ -1,0 +1,7 @@
+{
+  "name": "Kevin",
+  "base": "dark",
+  "overrides": {
+    "inactive": "#5fafaf"
+  }
+}
