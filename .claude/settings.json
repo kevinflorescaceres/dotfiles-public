@@ -46,7 +46,10 @@
     ]
   },
   "enabledPlugins": {
-    "ponytail@ponytail": true
+    "ponytail@ponytail": false,
+    "superpowers@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "impeccable@impeccable": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {
@@ -54,7 +57,17 @@
         "source": "github",
         "repo": "DietrichGebert/ponytail"
       }
+    },
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable",
+        "ref": "skill-v4.10.0"
+      }
     }
+  },
+  "env": {
+    "IMPECCABLE_NO_TELEMETRY": "1"
   },
   "modelSettings": {
     "claude-opus-5-5": {
