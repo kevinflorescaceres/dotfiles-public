@@ -45,6 +45,13 @@ Playwright script in `$OUT` (never in the repo): walk the task, press Tab throug
 the page and screenshot the focus, trigger the empty and error states. If
 `@axe-core/playwright` is already installed, run it; don't install it.
 
+Run Impeccable's detector on each page you review:
+`npx -y impeccable@4.10.0 detect --json <url>`, and again with
+`--viewport 360x740`. Exit 2 means findings, 0
+clean, 1 not scanned (say so; it isn't a pass). A detector finding with its
+rule id counts as evidence; contrast and legibility failures go under
+Critical, generic-AI tells under Improvements unless they hurt the task.
+
 Read every PNG you take. A finding you can't point to in a screenshot or a
 `path:line` is an opinion: leave it out.
 
