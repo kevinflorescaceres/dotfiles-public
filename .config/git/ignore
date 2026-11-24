@@ -1,2 +1,7 @@
 **/.claude/settings.local.json
 .idea/
+
+# impeccable context: personal, not committed
+/PRODUCT.md
+/DESIGN.md
+/.impeccable/
